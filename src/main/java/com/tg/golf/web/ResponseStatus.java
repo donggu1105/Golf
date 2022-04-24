@@ -7,8 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum ResponseStatus {
 
-    OK ("0000", "정상"),
-    ERROR("9999", "오류");
+    OK ("0000", "정상");
 
     private String statusCode;
     private String description;

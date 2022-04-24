@@ -2,6 +2,7 @@ package com.tg.golf.controller;
 
 import com.tg.golf.model.LoginDto;
 import com.tg.golf.service.LoginService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Controller
 public class LoginController {
-    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     private LoginService loginService;
 
@@ -31,16 +32,5 @@ public class LoginController {
         return "login/login";
     }
 
-    @RequestMapping(value = "/confirmLogin" , method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String,Object> confirmLogin(@RequestBody LoginDto loginDto){
-        Map<String,Object> jsonMap = new HashMap<>();
-        jsonMap.put("resultCode","9999");
-        int test = loginService.goLogin(loginDto.getMemId(),loginDto.getPwd());
-        log.info(test+"");
-        if (test == 1) {
-            jsonMap.put("resultCode","0000");
-        }
-        return jsonMap;
-    }
+
 }

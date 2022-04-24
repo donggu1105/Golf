@@ -11,7 +11,13 @@ public class LoginService {
         this.loginMapper = loginMapper;
     }
 
-    public int goLogin(String id,String pwd){
-        return loginMapper.selectUser(id,pwd);
+    public boolean isUserExists(String id,String pwd){
+
+        int count = loginMapper.selectUser(id, pwd);
+
+        if (count > 0) {
+            return true;
+        }
+        return false;
     }
 }
