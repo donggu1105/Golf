@@ -20,6 +20,7 @@ public class LoginController {
 
     @RequestMapping(value = "/goMain")
     public String goMain(){
+        // qwe
         return "login/login";
     }
 
