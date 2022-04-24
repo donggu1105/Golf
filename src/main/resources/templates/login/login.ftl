@@ -32,7 +32,7 @@
        }
        $.ajax({
            type:'post',
-           url : '/confirmLogin',
+           url : '/api/v1/confirm/login',
            data:JSON.stringify({
                memId:$('#loginId').val(),
                pwd:$('#loginPwd').val()
@@ -40,8 +40,8 @@
            dataType: 'json',
            contentType: 'application/json; charset=UTF-8',
            success : function (response) {
-               if (response.resultCode === '0000') {
-                   console.log('성공');
+               if (response.status === '0000') {
+                   location.href = "main?memId=" + $('#loginId').val();
                }else{
                    console.log('실패');
                }

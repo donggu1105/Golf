@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tg.golf.mapper.ReservMapper">
+
+    <select id="selectField" resultType="map">
+        SELECT GF.RANGE_CODE,
+		 	   GF.TS_NUMBER,
+	    	   (SELECT MAX(INSERTED_DATETIME) 
+				FROM RESERV R 
+				WHERE R.RANGE_CODE = GF.RANGE_CODE) AS REMAIN_TIME
+		FROM GOLF_FIELD GF,
+		RESERV R 
+		GROUP BY RANGE_CODE
+    </select>
+</mapper>

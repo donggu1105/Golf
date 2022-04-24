@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
+	
     LoginMapper loginMapper;
+    
     public LoginService(LoginMapper loginMapper){
         this.loginMapper = loginMapper;
     }
