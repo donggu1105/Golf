@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @Slf4j
 @ControllerAdvice
-public class ExceptionController {
+public class ExceptionControllerHandler {
 
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
@@ -30,7 +30,7 @@ public class ExceptionController {
 
         ErrorResponse response = ErrorResponse
                 .create()
-                .status(ErrorCode.ERROR.getStatus())
+                .status(ErrorCode.USER_NOT_FOUND.getStatus())
                 .message(e.getMessage());
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
