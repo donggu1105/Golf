@@ -7,52 +7,51 @@
     <table>
         <tr>
             <th>아이디 : </th>
-            <td><input type="text" id="loginId"></td>
+            <td><input type="text" id="memId"></td>
         </tr>
         <tr>
             <th>비밀번호 : </th>
-            <td><input type="password" id="loginPwd"></td>
+            <td><input type="password" id="pwd"></td>
         </tr>
     </table>
     <input type="button" onclick="confirmLogin()" value="로그인">
-    <input type="button" onclick="registUser()" value="회원가입">
+    <input type="button" onclick="joinView()" value="회원가입">
 </div>
 </html>
 <script>
    function confirmLogin() {
-       if ($('#loginId').val() === '') {
+       if ($('#memId').val() === '') {
            alert('아이디를 입력해주세요.');
-           $('#loginId').focus();
+           $('#memId').focus();
            return false;
        }
-       if ($('#loginPwd').val() === '') {
+       if ($('#pwd').val() === '') {
            alert('비밀번호를 입력해주세요.');
-           $('#loginPwd').focus();
+           $('#pwd').focus();
            return false;
        }
        $.ajax({
            type:'post',
-           url : '/api/v1/confirm/login',
+           url : '/login',
            data:JSON.stringify({
-               memId:$('#loginId').val(),
-               pwd:$('#loginPwd').val()
+               memId:$('#memId').val(),
+               pwd:$('#pwd').val()
            }),
            dataType: 'json',
            contentType: 'application/json; charset=UTF-8',
            success : function (response) {
-               if (response.status === '0000') {
-                   location.href = "main?memId=" + $('#loginId').val();
-               }else{
-                   console.log('실패');
-               }
+               location.href = "main?memId=" + $('#memId').val();
            },
-           error : function () {
-               alert('에러');
+           error : function (xhr, status, error) {
+               var err = JSON.parse(xhr.responseText);
+               if (err.status === 9999) {
+                   alert("아이디 혹은 비밀번호를 일치하지 않습니다.");
+               }
            }
        })
    }
 
-   function registUser() {
-       location.href = ''
+   function joinView() {
+       location.href = "/join";
    }
 </script>

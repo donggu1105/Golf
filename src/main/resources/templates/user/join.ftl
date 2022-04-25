@@ -69,7 +69,7 @@
 
        $.ajax({
            type:'post',
-           url : '/user/join',
+           url : '/join',
            data:JSON.stringify({
                memId:$('#memId').val(),
                pwd:$('#pwd').val(),
@@ -80,14 +80,11 @@
            dataType: 'json',
            contentType: 'application/json; charset=UTF-8',
            success : function (response) {
-               if (response.status != '9999') {
-                   location.href = "main?memId=" + $('#memId').val();
-               }else{
-                   console.log('실패');
-               }
+               // location.href = "/main?memId=" + $('#memId').val();
+               location.href = "/login";
            },
-           error : function () {
-               alert('에러');
+           error : function (request, status, error) {
+               alert(error);
            }
        })
    }
