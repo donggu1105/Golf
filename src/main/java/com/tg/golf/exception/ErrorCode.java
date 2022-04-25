@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ErrorCode {
 
-    INVALID_PARAMETER(400, null, "Invalid Request Data"),
+    INVALID_PARAMETER(9999, null, "Invalid Request Data"),
     ERROR(9999, null, "error"),
     USER_NOT_FOUND(9999, null, "user not found");
 

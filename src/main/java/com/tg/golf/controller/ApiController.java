@@ -1,5 +1,6 @@
 package com.tg.golf.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,11 +13,11 @@ import com.tg.golf.web.Path;
 import com.tg.golf.web.Response;
 import com.tg.golf.web.ResponseStatus;
 
+@RequiredArgsConstructor
 @RestController
 public class ApiController {
 
-	@Autowired
-	LoginService loginService;
+	private final LoginService loginService;
 
 	@PostMapping(Path.CONFIRM_LOGIN)
 	public Response confirmLogin(@RequestBody LoginDto loginDto) {
